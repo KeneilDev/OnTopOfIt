@@ -1,0 +1,121 @@
+﻿@model OnTopOfIt.Models.TodoItems
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit <i class="fa">&#xf185;</i></h1>
+
+<h4>TodoItems</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="icon" class="control-label"></label>
+                <select class="form-control fadrop" style="color:@Model.colour" asp-for="icon">
+                    <option value="star">&#xf005;</option>
+                    <option value="heart">&#xf004;</option>
+                    <option value="water">&#xf043;</option>
+                    <option value="book">&#xf02d;</option>
+                    <option value="tree">&#xf1bb;</option>
+                    <option value="sun">&#xf185;</option>
+                    <option value="lightbulb">&#xf0eb;</option>
+                    <option value="fire">&#xf06d;</option>
+                    <option value="smile">&#xf118;</option>
+                    <option value="world">&#xf0ac;</option>
+                    <option value="camera">&#xf030;</option>
+                    <option value="musicnote">&#xf001;</option>
+                    <option value="dollar">&#xf155;</option>
+                    <option value="coffee">&#xf0f4;</option>
+                    <option value="scissors">&#xf0c4;</option>
+                    <option value="bell">&#xf0f3;</option>
+                    <option value="pill">&#xf484;</option>
+                    <option value="apple">&#xf5d1;</option>
+                    <option value="calendar">&#xf073;</option>
+                    <option value="bone">&#xf5d7;</option>
+                    <option value="car">&#xf1b9;</option>
+                    <option value="mail">&#xf0e0;</option>
+                    <option value="health">&#xf469;</option>
+                    <option value="wrench">&#xf0ad;</option>
+                    <option value="weight">&#xf44b;</option>
+                    <option value="ball">&#xf1e3;</option>
+                </select>                   
+                <span asp-validation-for="icon" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="colour" class="control-label"></label>
+                <select class="form-control" asp-for="colour">
+                    <option>PURPLE</option>
+                    <option>BLUE</option>
+                    <option>RED</option>
+                    <option>GREEN</option>
+                    <option>YELLOW</option>
+                    <option>ORANGE</option>
+                    <option>PINK</option>
+                </select>
+                <span asp-validation-for="colour" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <div>
+                    <div class="form-check form-check-inline">
+                        <input asp-for="repeatMonday" class="form-check-input" type="checkbox" value="true">
+                        <label class="form-check-label" for="inlineCheckbox1">Monday</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input asp-for="repeatTuesday" class="form-check-input" type="checkbox" value="true">
+                        <label class="form-check-label" for="inlineCheckbox2">Tuesday</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input asp-for="repeatWednesday" class="form-check-input" type="checkbox" value="true">
+                        <label class="form-check-label" for="inlineCheckbox3">Wednesday</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input asp-for="repeatThursday" class="form-check-input" type="checkbox" value="true">
+                        <label class="form-check-label" for="inlineCheckbox2">Thusday</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input asp-for="repeatFriday" class="form-check-input" type="checkbox" value="true">
+                        <label class="form-check-label" for="inlineCheckbox2">Friday</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input asp-for="repeatSaturday" class="form-check-input" type="checkbox" value="true">
+                        <label class="form-check-label" for="inlineCheckbox2">Saturday</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input asp-for="repeatSunday" class="form-check-input" type="checkbox" value="true">
+                        <label class="form-check-label" for="inlineCheckbox2">Sunday</label>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label asp-for="timeofDay" class="control-label"></label>
+                <select class="form-control" asp-for="timeofDay">
+                    <option>Morning</option>
+                    <option>Afternoon</option>
+                    <option>Night</option>
+                    <option>Anytime</option>
+                </select>                
+                <span asp-validation-for="timeofDay" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -1,0 +1,85 @@
+﻿@model IEnumerable<OnTopOfIt.Models.TodoItems>
+@using OnTopOfIt.Models
+
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1 class="text-center">Daily Tasks <i class="fas fa-tasks"></i></h1>
+
+<div>
+    <a asp-action="Create">
+        <input type="button" class="btn btn-info text-dark mt-2 mb-2" value="➕ Add a task">
+    </a>
+</div>
+
+<div class="table-responsive">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.icon)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Name)
+                </th>         
+                <th>
+                    Repeated Days
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.timeofDay)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        <i class="fa" style="color:@item.colour; font-size:24px">&#@OnTopOfIt.Models.TextToIcon.textToIcon(item.icon);</i>
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>               
+                    <td>
+                        @if (item.repeatMonday == true)
+                        {
+                            <span>Mon, </span>
+                        }
+                        @if (item.repeatTuesday == true)
+                        {
+                            <span>Tue, </span>
+                        }@if (item.repeatWednesday == true)
+                        {
+                            <span>Wed, </span>
+                        }@if (item.repeatThursday == true)
+                        {
+                            <span>Thu, </span>
+                        }@if (item.repeatFriday == true)
+                        {
+                            <span>Fri, </span>
+                        }@if (item.repeatSaturday == true)
+                        {
+                            <span>Sat, </span>
+                        }@if (item.repeatSunday == true)
+                        {
+                            <span>Sun</span>
+                        }
+                    <td>
+                        @Html.DisplayFor(modelItem => item.timeofDay)
+                    </td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.Id">
+                            <input type="button" class="btn btn-success text-dark" value="Edit">
+                        </a> |
+                        <a asp-action="Delete" asp-route-id="@item.Id">
+                            <input type="button" class="btn btn-danger text-dark" value="Delete">
+                        </a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
