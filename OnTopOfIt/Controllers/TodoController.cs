@@ -24,10 +24,9 @@ namespace OnTopOfIt.Controllers
 
         public TodoController(LoginDbContext context, Microsoft.AspNetCore.Identity.UserManager<OnTopOfItUser> userManager)
         {
-            //this.context = context;
-            //this._userManager = userManager;
+    
             this.context = context;
-            this._userManager = userManager;
+            _userManager = userManager;
 
         }
 
@@ -43,13 +42,37 @@ namespace OnTopOfIt.Controllers
                                           orderby i.Id
                                           select i;
 
-            // List<TodoItems> todoItems = await items.ToListAsync();
-            List<TodoItems> todoItems1 = await items.ToListAsync();
+            List<TodoItems> todoItems = await items.ToListAsync();
 
 
-            return View(todoItems1);
+            return View(todoItems);
 
         }
+
+        public async Task<ActionResult> ToggleDone(int id)
+        {
+            TodoItems item = await context.TodoItems.FindAsync(id);
+            if (item == null)
+            {
+                TempData["Error"] = "The item does not exist!";
+            }
+            else
+            {
+                item.taskComplete = !item.taskComplete;
+                await context.SaveChangesAsync();
+                if (item.taskComplete == true)
+                {
+                    TempData["Success"] = "The task has been completed successfully!";
+                }
+                else
+                {
+                    TempData["Success"] = "The task has been undone!";
+                }
+            }
+
+            return RedirectToAction("Index");
+        }
+
 
         //CREATE NEW TASK VIEW
         public IActionResult Create()

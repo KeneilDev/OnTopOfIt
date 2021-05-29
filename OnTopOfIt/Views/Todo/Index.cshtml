@@ -6,7 +6,7 @@
     ViewData["Title"] = "Index";
 }
 
-<h1 class="text-center">Daily Tasks <i class="fas fa-tasks"></i></h1>
+<h1 class="text-left">Daily Tasks <i class="fas fa-tasks"></i></h1>
 
 <div>
     <a asp-action="Create">
@@ -15,7 +15,7 @@
 </div>
 
 <div class="table-responsive">
-    <table class="table table-striped">
+    <table class="table table-striped table-responsive-md">
         <thead>
             <tr>
                 <th>
@@ -23,18 +23,23 @@
                 </th>
                 <th>
                     @Html.DisplayNameFor(model => model.Name)
-                </th>         
+                </th>
                 <th>
                     Repeated Days
                 </th>
                 <th>
                     @Html.DisplayNameFor(model => model.timeofDay)
                 </th>
-                <th></th>
+                <th>
+                    Functions
+                </th>
+                <th>
+                    Complete
+                </th>
             </tr>
         </thead>
         <tbody>
-            @foreach (var item in Model)
+            @foreach (var item in Model.Where(w => w.taskComplete == false))
             {
                 <tr>
                     <td>
@@ -42,7 +47,7 @@
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.Name)
-                    </td>               
+                    </td>
                     <td>
                         @if (item.repeatMonday == true)
                         {
@@ -71,11 +76,94 @@
                         @Html.DisplayFor(modelItem => item.timeofDay)
                     </td>
                     <td>
-                        <a asp-action="Edit" asp-route-id="@item.Id">
-                            <input type="button" class="btn btn-success text-dark" value="Edit">
-                        </a> |
-                        <a asp-action="Delete" asp-route-id="@item.Id">
-                            <input type="button" class="btn btn-danger text-dark" value="Delete">
+                        <form>
+                            <button type="submit" class="btn btn-success text-dark" asp-action="Edit" asp-route-id="@item.Id"> <i class="fas fa-edit"></i></button>
+                            <button type="submit" class="btn btn-danger text-dark" asp-action="Delete" asp-route-id="@item.Id"> <i class="far fa-trash-alt"></i></button>
+                        </form>
+                    </td>
+                    <td>
+                        <a asp-action="ToggleDone" asp-route-id="@item.Id">
+                            <input type="button" class="btn btn-success" value="Complete">
+                        </a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<h1 class="text-left mt-5 mb-5" >Completed Tasks <i class="fas fa-tasks"></i></h1>
+
+<div class="table-responsive">
+    <table class="table table-striped table-responsive-md">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.icon)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Name)
+                </th>
+                <th>
+                    Repeated Days
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.timeofDay)
+                </th>
+                <th>
+                    Functions
+                </th>
+                <th>
+                    Complete
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Where(w => w.taskComplete == true))
+            {
+                <tr>
+                    <td>
+                        <i class="fa" style="color:@item.colour; font-size:24px">&#@OnTopOfIt.Models.TextToIcon.textToIcon(item.icon);</i>
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td>
+                        @if (item.repeatMonday == true)
+                        {
+                            <span>Mon, </span>
+                        }
+                        @if (item.repeatTuesday == true)
+                        {
+                            <span>Tue, </span>
+                        }@if (item.repeatWednesday == true)
+                        {
+                            <span>Wed, </span>
+                        }@if (item.repeatThursday == true)
+                        {
+                            <span>Thu, </span>
+                        }@if (item.repeatFriday == true)
+                        {
+                            <span>Fri, </span>
+                        }@if (item.repeatSaturday == true)
+                        {
+                            <span>Sat, </span>
+                        }@if (item.repeatSunday == true)
+                        {
+                            <span>Sun</span>
+                        }
+                    <td>
+                        @Html.DisplayFor(modelItem => item.timeofDay)
+                    </td>
+                    <td>
+                        <form>
+                            <button type="submit" class="btn btn-success text-dark" asp-action="Edit" asp-route-id="@item.Id"> <i class="fas fa-edit"></i></button>
+                            <button type="submit" class="btn btn-danger text-dark" asp-action="Delete" asp-route-id="@item.Id"> <i class="far fa-trash-alt"></i></button>
+                        </form>
+                    </td>
+                    <td>
+                        <a asp-action="ToggleDone" asp-route-id="@item.Id">
+                            <input type="button" class="btn btn-warning" value="Undo">
                         </a>
                     </td>
                 </tr>
