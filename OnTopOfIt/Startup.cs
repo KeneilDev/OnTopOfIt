@@ -29,19 +29,9 @@ namespace OnTopOfIt
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            //TodoList Data Context
-            services.AddDbContext<TodoContext>(options => 
-            options.UseSqlServer(Configuration.GetConnectionString("TodoContext")));
-
-            //Default Data Context
-            services.AddDbContext<ApplicationDbContext>(options =>
-            options.UseSqlServer(
-            Configuration.GetConnectionString("DefaultConnection")));
-
             //Added for Identity
-
-             services.AddDefaultIdentity<OnTopOfItUser>(options => options.SignIn.RequireConfirmedAccount = false)
-             .AddEntityFrameworkStores<LoginDbContext>();
+            services.AddDefaultIdentity<OnTopOfItUser>(options => options.SignIn.RequireConfirmedAccount = false)
+            .AddEntityFrameworkStores<OnToOfItContext>();
             services.AddControllersWithViews();
             services.AddRazorPages();
         }

@@ -9,7 +9,7 @@ using OnTopOfIt.Data;
 
 namespace OnTopOfIt.Migrations.LoginDb
 {
-    [DbContext(typeof(LoginDbContext))]
+    [DbContext(typeof(OnToOfItContext))]
     [Migration("20210311141822_InitialUserCreate")]
     partial class InitialUserCreate
     {

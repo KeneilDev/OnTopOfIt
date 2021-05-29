@@ -16,12 +16,9 @@ namespace OnTopOfIt.Areas.Identity
         public void Configure(IWebHostBuilder builder)
         {
             builder.ConfigureServices((context, services) => {
-                services.AddDbContext<LoginDbContext>(options =>
+                services.AddDbContext<OnToOfItContext>(options =>
                     options.UseSqlServer(
-                        context.Configuration.GetConnectionString("LoginDbContextConnection")));
-
-              //  services.AddDefaultIdentity<OnTopOfItUser>(options => options.SignIn.RequireConfirmedAccount = true)
-               //  .AddEntityFrameworkStores<LoginDbContext>();
+                        context.Configuration.GetConnectionString("OnTopOfItContextConnection")));
             });
         }
     }

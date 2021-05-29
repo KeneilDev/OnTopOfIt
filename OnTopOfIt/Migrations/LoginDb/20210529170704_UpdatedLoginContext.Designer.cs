@@ -9,7 +9,7 @@ using OnTopOfIt.Data;
 
 namespace OnTopOfIt.Migrations.LoginDb
 {
-    [DbContext(typeof(LoginDbContext))]
+    [DbContext(typeof(OnToOfItContext))]
     [Migration("20210529170704_UpdatedLoginContext")]
     partial class UpdatedLoginContext
     {

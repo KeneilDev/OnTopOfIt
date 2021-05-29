@@ -10,11 +10,11 @@ using OnTopOfIt.Models;
 
 namespace OnTopOfIt.Data
 {
-    public class LoginDbContext : IdentityDbContext<OnTopOfItUser>
+    public class OnToOfItContext : IdentityDbContext<OnTopOfItUser>
     {
         public DbSet<TodoItems> TodoItems { get; set; }
 
-        public LoginDbContext(DbContextOptions<LoginDbContext> options)
+        public OnToOfItContext(DbContextOptions<OnToOfItContext> options)
             : base(options)
         {
 

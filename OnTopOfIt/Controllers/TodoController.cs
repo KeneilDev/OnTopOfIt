@@ -18,11 +18,11 @@ namespace OnTopOfIt.Controllers
     public class TodoController : Controller
     {
      
-        private readonly LoginDbContext context;
+        private readonly OnToOfItContext context;
         private readonly Microsoft.AspNetCore.Identity.UserManager<OnTopOfItUser> _userManager;
 
 
-        public TodoController(LoginDbContext context, Microsoft.AspNetCore.Identity.UserManager<OnTopOfItUser> userManager)
+        public TodoController(OnToOfItContext context, Microsoft.AspNetCore.Identity.UserManager<OnTopOfItUser> userManager)
         {
     
             this.context = context;

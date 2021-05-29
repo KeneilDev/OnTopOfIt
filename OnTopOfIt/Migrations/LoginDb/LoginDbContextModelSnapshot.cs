@@ -8,7 +8,7 @@ using OnTopOfIt.Data;
 
 namespace OnTopOfIt.Migrations.LoginDb
 {
-    [DbContext(typeof(LoginDbContext))]
+    [DbContext(typeof(OnToOfItContext))]
     partial class LoginDbContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)

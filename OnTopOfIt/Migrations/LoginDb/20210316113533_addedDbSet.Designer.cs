@@ -9,7 +9,7 @@ using OnTopOfIt.Data;
 
 namespace OnTopOfIt.Migrations.LoginDb
 {
-    [DbContext(typeof(LoginDbContext))]
+    [DbContext(typeof(OnToOfItContext))]
     [Migration("20210316113533_addedDbSet")]
     partial class addedDbSet
     {
